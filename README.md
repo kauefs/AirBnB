@@ -16,6 +16,4 @@ Por meio do portal [Inside AirBnB](http://insideairbnb.com/get-the-data.html) é
 
 <p align=center><img alt=AirBnB src=https://www.area360.com.au/wp-content/uploads/2017/09/airbnb-logo.jpg width=25%></p>
 
-**Este projeto analisa dados referentes a Sydney para ver quais _InSights_ podem ser extraídos a partir dos dados brutos.**
-
 <p align=center><img alt=Sydney Tag Cloud src=https://github.com/kauefs/AirBnB/raw/%40/NoteBook/WordCloudSydney.png width=75%>
