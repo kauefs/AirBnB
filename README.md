@@ -17,3 +17,9 @@ Por meio do portal [Inside AirBnB](http://insideairbnb.com/get-the-data.html) é
 <p align=center><img alt=AirBnB src=https://www.area360.com.au/wp-content/uploads/2017/09/airbnb-logo.jpg width=25%></p>
 
 <p align=center><img alt=Sydney Tag Cloud src=https://github.com/kauefs/AirBnB/raw/%40/NoteBook/WordCloudSydney.png width=75%>
+
+## Dados
+
+Fonte: [InSide AirBnB](http://insideairbnb.com/get-the-data.html)
+
+Data do Banco de Dados: 2023.06.06
