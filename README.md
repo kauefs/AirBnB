@@ -10,7 +10,7 @@ $$13\ July\ 2023$$
 
 O [AirBnB](https://www.airbnb.com/) é considerado a **maior empresa hoteleira da atualidade**, isso **sem possuir nenhum hotel!** Conectando pessoas que querem viajar **(**e se hospedar**)** com anfitriões que querem alugar seus imóveis de maneira prática, fornecendo uma plataforma inovadora para tornar essa hospedagem uma alternativa.
 
-Ao final de 2018, a StartUp, fundada 10 anos atrás, já havia **hospedado mais de 300 milhões** de pessoas ao redor do mundo, desafiando redes hoteleiras tradicionais.
+No final de 2018, a StartUp, fundada 10 anos atrás, já havia **hospedado mais de 300 milhões** de pessoas ao redor do mundo, desafiando redes hoteleiras tradicionais.
 
 Por meio do portal [Inside AirBnB](http://insideairbnb.com/get-the-data.html) é possível baixar grande quantidade de dados, relativos as principais cidades do mundo, para desenvolver projetos **&** soluções de _Data Science_.
 
