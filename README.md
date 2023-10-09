@@ -18,4 +18,4 @@ Por meio do portal [Inside AirBnB](http://insideairbnb.com/get-the-data.html) é
 
 **Este projeto analisa dados referentes a Sydney para ver quais _InSights_ podem ser extraídos a partir dos dados brutos.**
 
-<p align=center><img alt=Sydney Tag Cloud src=https://github.com/kauefs/AirBnB/raw/%40/NoteBook/WordCloudSydney.png width=50%>
+<p align=center><img alt=Sydney Tag Cloud src=https://github.com/kauefs/AirBnB/raw/%40/NoteBook/WordCloudSydney.png width=75%>
