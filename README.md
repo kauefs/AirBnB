@@ -38,7 +38,7 @@ Pandas ProFiling Report
 
 StreamLit InterActive DashBoard
 
-<p align=center><img src=https://github.com/kauefs/AirBnB/raw/%40/img/DashBoardSY.png width=75%></p>
+<p align=center><img src=https://github.com/kauefs/AirBnB/raw/%40/img/DashBoardSYD.png width=75%></p>
 
 > In order to view DashBoard:
 
