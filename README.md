@@ -33,3 +33,16 @@ Data do Banco de Dados: 2023.06.06
 Pandas ProFiling Report
 
 <p align=center><img alt=Sydney Tag Cloud src=https://github.com/kauefs/AirBnB/raw/%40/img/ReportSYD.png width=75%>
+
+## DashBoard
+
+StreamLit InterActive DashBoard
+
+<p align=center><img src=https://github.com/kauefs/AirBnB/raw/%40/img/DashBoardSY.png width=75%></p>
+
+> In order to view DashBoard:
+
+```shell
+pip install streamlit
+streamlit run {path}filename.py
+```
