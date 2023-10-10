@@ -8,7 +8,7 @@
 
 $$13\ July\ 2023$$
 
-O [AirB**n**B](https://www.airbnb.com/) é considerado a **maior empresa hoteleira da atualidade**, isso **sem possuir nenhum hotel!** Conectando pessoas que querem viajar **(**e se hospedar**)** com anfitriões que querem alugar seus imóveis de maneira prática, fornecendo uma plataforma inovadora para tornar essa hospedagem uma alternativa.
+O [AirB**n**B](https://www.airbnb.com/) é considerado a **maior empresa hoteleira da atualidade**, isso **sem possuir nenhum hotel!** Conectando pessoas que querem viajar (e se hospedar) com anfitriões que querem alugar seus imóveis de maneira prática, fornecendo uma plataforma inovadora para tornar essa hospedagem uma alternativa.
 
 No final de 2018, a StartUp, fundada 10 anos atrás, já havia **hospedado mais de 300 milhões** de pessoas ao redor do mundo, desafiando redes hoteleiras tradicionais.
 
@@ -23,3 +23,9 @@ Por meio do portal [Inside AirB**n**B](http://insideairbnb.com/get-the-data.html
 Fonte: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)
 
 Data do Banco de Dados: 2023.06.06
+
+<br>
+
+## Report
+
+[ProFiling Report](https://github.com/kauefs/AirBnB/raw/@/report/ProfilingReportSydneyAirBnB.html)
