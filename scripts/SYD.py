@@ -73,9 +73,7 @@ FilteredDF   = df[(df.neighbourhood.isin(FilteredHood)) & (df.room.isin(Filtered
 # Updating PlaceHoder:
 SideBarInfo.info('{} Filtered Listings'.format(FilteredDF.shape[0]))
 # MAIN:
-#st.divider()
 st.title('InSide Sydney AirBnB')
-#st.divider()
 # WordCloud:
 #SYD         =  pd.read_csv('datasets/SYD20230606AirBnB.csv.gz')
 #select      =['description']
@@ -100,13 +98,11 @@ fig, ax = plt.subplots(facecolor='k')
 ax      = plt.imshow(WordCloud, interpolation='bilinear')
 ax      = plt.axis('off')
 st.pyplot(fig,clear_figure=None,use_container_width=True)
-#st.divider()
 # Table:
 st.subheader('DATA')
 st.markdown( '''   Source: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)''')
 st.markdown(f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
 if table.checkbox('Show Table Data', value=True):st.write(FilteredDF)
-#st.divider()
 # Columns:
 L, R = st.columns(2)
 with L:
@@ -139,7 +135,6 @@ with R:
     st.pyplot(fig2,
               clear_figure=None,
               use_container_width=True)
-#st.divider()
 # MAP:
 st.sidebar.write('Map Options:')
 if  st.sidebar.checkbox('InteActive', value=True):
