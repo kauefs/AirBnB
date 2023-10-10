@@ -197,4 +197,12 @@ if  st.sidebar.checkbox('InteActive', value=True):
 if  st.sidebar.checkbox('Simple'):
     st.subheader('Simple Map:')
     st.map(FilteredDF)
+st.divider()
+with st.container():
+     C1, C2, C3, C4, C5 = st.columns(5)
+     with C1:st.empty()
+     with C2:st.empty()
+     with C3:st.markdown('''©2023™''')
+     with C4:st.empty()
+     with C5:st.empty()
 st.toast('SYD!', icon='🌃')
