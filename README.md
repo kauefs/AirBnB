@@ -28,4 +28,4 @@ Data do Banco de Dados: 2023.06.06
 
 ## Report
 
-[ProFiling Report](https://github.com/kauefs/AirBnB/raw/@/report/ProfilingReportSydneyAirBnB.html)
+Pandas ProFiling Report
