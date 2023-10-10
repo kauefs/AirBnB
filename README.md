@@ -24,8 +24,12 @@ Fonte: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)
 
 Data do Banco de Dados: 2023.06.06
 
+<p align=center><img alt=Sydney Tag Cloud src=https://github.com/kauefs/AirBnB/raw/%40/img/MapSYD.png width=75%>
+
 <br>
 
 ## Report
 
 Pandas ProFiling Report
+
+<p align=center><img alt=Sydney Tag Cloud src=https://github.com/kauefs/AirBnB/raw/%40/img/ReportSYD.png width=75%>
