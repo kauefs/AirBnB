@@ -8,11 +8,11 @@
 
 $$13\ July\ 2023$$
 
-O [AirBnB](https://www.airbnb.com/) é considerado a **maior empresa hoteleira da atualidade**, isso **sem possuir nenhum hotel!** Conectando pessoas que querem viajar **(**e se hospedar**)** com anfitriões que querem alugar seus imóveis de maneira prática, fornecendo uma plataforma inovadora para tornar essa hospedagem uma alternativa.
+O [AirB**n**B](https://www.airbnb.com/) é considerado a **maior empresa hoteleira da atualidade**, isso **sem possuir nenhum hotel!** Conectando pessoas que querem viajar **(**e se hospedar**)** com anfitriões que querem alugar seus imóveis de maneira prática, fornecendo uma plataforma inovadora para tornar essa hospedagem uma alternativa.
 
 No final de 2018, a StartUp, fundada 10 anos atrás, já havia **hospedado mais de 300 milhões** de pessoas ao redor do mundo, desafiando redes hoteleiras tradicionais.
 
-Por meio do portal [Inside AirBnB](http://insideairbnb.com/get-the-data.html) é possível baixar grande quantidade de dados, relativos as principais cidades do mundo, para desenvolver projetos **&** soluções de _Data Science_.
+Por meio do portal [Inside AirB**n**B](http://insideairbnb.com/get-the-data.html) é possível baixar grande quantidade de dados, relativos as principais cidades do mundo, para desenvolver projetos **&** soluções de _Data Science_.
 
 <p align=center><img alt=AirBnB src=https://www.area360.com.au/wp-content/uploads/2017/09/airbnb-logo.jpg width=25%></p>
 
@@ -20,6 +20,6 @@ Por meio do portal [Inside AirBnB](http://insideairbnb.com/get-the-data.html) é
 
 ## Dados
 
-Fonte: [InSide AirBnB](http://insideairbnb.com/get-the-data.html)
+Fonte: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)
 
 Data do Banco de Dados: 2023.06.06
