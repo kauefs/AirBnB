@@ -1,5 +1,5 @@
 
-# Análise de Dados do AirBnB: *Sydney*
+# Análise de Dados do AirBnB: _SydNey_
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-kauefs-blue.svg)](https://www.linkedin.com/in/kauefs/)
 [![GitHub](https://img.shields.io/badge/GitHub-kauefs-black.svg?style=flat)](https://github.com/kauefs/)
@@ -16,7 +16,7 @@ Por meio do portal [Inside AirB**n**B](http://insideairbnb.com/get-the-data.html
 
 <p align=center><img alt=AirBnB src=https://www.area360.com.au/wp-content/uploads/2017/09/airbnb-logo.jpg width=25%></p>
 
-<p align=center><img alt=Sydney Tag Cloud src=https://github.com/kauefs/AirBnB/raw/%40/img/WordCloudSydney.png width=75%>
+<p align=center><img alt=TagCloud src=https://github.com/kauefs/AirBnB/raw/%40/img/WordCloudSydney.png width=75%>
 
 ## Dados
 
@@ -24,7 +24,7 @@ Fonte: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)
 
 Data do Banco de Dados: 2023.06.06
 
-<p align=center><img alt=Sydney Tag Cloud src=https://github.com/kauefs/AirBnB/raw/%40/img/MapSYD.png width=75%>
+<p align=center><img alt=Map src=https://github.com/kauefs/AirBnB/raw/%40/img/MapSYD.png width=75%></p>
 
 <br>
 
@@ -32,13 +32,13 @@ Data do Banco de Dados: 2023.06.06
 
 Pandas ProFiling Report
 
-<p align=center><img alt=Sydney Tag Cloud src=https://github.com/kauefs/AirBnB/raw/%40/img/ReportSYD.png width=75%>
+<p align=center><img alt=ProFilingReport src=https://github.com/kauefs/AirBnB/raw/%40/img/ReportSYD.png width=75%></p>
 
 ## DashBoard
 
 StreamLit InterActive DashBoard
 
-<p align=center><img src=https://github.com/kauefs/AirBnB/raw/%40/img/DashBoardSYD.png width=75%></p>
+<p align=center><img alt=DashBoard src=https://github.com/kauefs/AirBnB/raw/%40/img/DashBoardSYD.png width=75%></p>
 
 > In order to view DashBoard:
 
