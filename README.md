@@ -14,7 +14,7 @@ No final de 2018, a StartUp, fundada 10 anos atrás, já havia **hospedado mais 
 
 Por meio do portal [Inside AirB**n**B](http://insideairbnb.com/get-the-data.html) é possível baixar grande quantidade de dados, relativos as principais cidades do mundo, para desenvolver projetos **&** soluções de _Data Science_.
 
-<p align=center><img alt=AirBnB src=https://www.area360.com.au/wp-content/uploads/2017/09/airbnb-logo.jpg width=25%></p>
+<p align=center><img alt=AirBnB   src=https://1000logos.net/wp-content/uploads/2023/01/Airbnb-logo.png width=25%></p>
 
 <p align=center><img alt=TagCloud src=https://github.com/kauefs/AirBnB/raw/%40/img/WordCloudSydney.png width=75%>
 
