@@ -38,11 +38,4 @@ Pandas ProFiling Report
 
 StreamLit InterActive DashBoard
 
-<p align=center><img alt=DashBoard src=https://github.com/kauefs/AirBnB/raw/%40/img/DashBoardSYD.png width=75%></p>
-
-> In order to view DashBoard:
-
-```shell
-pip install streamlit
-streamlit run {path}filename.py
-```
+<p align=center><a href=https://sydney.streamlit.app/><img alt=DashBoard src=https://github.com/kauefs/AirBnB/raw/%40/img/DashBoardSYD.png width=75%></a></p>
