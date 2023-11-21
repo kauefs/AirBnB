@@ -1,0 +1,8 @@
+pip
+numpy
+pandas
+pydeck
+seaborn
+matplotlib
+wordcloud
+PIL
