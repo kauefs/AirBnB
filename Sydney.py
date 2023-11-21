@@ -9,7 +9,7 @@ from   wordcloud         import WordCloud, STOPWORDS, ImageColorGenerator
 from   PIL import Image
 st.set_page_config(page_title='SYD', page_icon='🌃')
 # DATA:
-DATA         = 'datasets/SYD20230606AirBnB.csv.gz'
+DATA         = 'dataset/AirBnB•SYD20230606.csv.gz'
 @st.cache_data
 def LoadData():
     rename   = {'name'                          :'listing',
