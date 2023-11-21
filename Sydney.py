@@ -83,7 +83,7 @@ with st.spinner('Loading…'):
     all         = ' '.join(words for words in FilteredDF['description'])
     StopWords   =  set(STOPWORDS)
     StopWords.update(['b', 'PID', 'will', 'number', 'br', 'EXT'])
-    mask        =  np.array(Image.open('images/sydney.jpg'))
+    mask        =  np.array(Image.open('img/sydney.jpg'))
     WordCloud   =  WordCloud(stopwords=StopWords,
                              mask=mask,
                              colormap='autumn',
