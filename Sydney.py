@@ -73,7 +73,7 @@ FilteredDF   = df[(df.neighbourhood.isin(FilteredHood)) & (df.room.isin(Filtered
 # Updating PlaceHoder:
 SideBarInfo.info('{} Filtered Listings'.format(FilteredDF.shape[0]))
 # MAIN:
-st.title('InSide Sydney AirBnB')
+st.title('Inside Sydney Airbnb')
 # WordCloud:
 #SYD         =  pd.read_csv('datasets/SYD20230606AirBnB.csv.gz')
 #select      =['description']
@@ -100,13 +100,13 @@ ax      = plt.axis('off')
 st.pyplot(fig,clear_figure=None,use_container_width=True)
 # Table:
 st.subheader('DATA')
-st.markdown( '''    Source: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)''')
+st.markdown( '''    Source: [Inside Airbnb](http://insideairbnb.com/get-the-data.html)''')
 st.markdown(f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
 if table.checkbox('Show Table Data', value=True):st.write(FilteredDF)
 # Columns:
 L, R = st.columns(2)
 with L:
-    st.subheader('CorrelationMatrix')
+    st.subheader('Correlation Matrix')
     mtx       = FilteredDF[['price','nights','reviews']].corr()
     fig1, ax1 = plt.subplots()
     ax1       = sns.heatmap(mtx,
@@ -121,7 +121,7 @@ with L:
               clear_figure=None,
               use_container_width=True)
 with R:
-    st.subheader(   'HeatMap')
+    st.subheader(  'Heat Map')
     corr      = FilteredDF[['price','nights','reviews']].corr()
     fig2, ax2 = plt.subplots()
     ax2       = sns.heatmap(corr,
@@ -137,8 +137,8 @@ with R:
               use_container_width=True)
 # MAP:
 st.sidebar.write('Map Options:')
-if  st.sidebar.checkbox('InteActive', value=True):
-    st.subheader('InterActive Map')
+if  st.sidebar.checkbox('3D', value=True):
+    st.subheader('3D Map')
 #initial = compute_view(FilteredDF[['longitude','latitude']], 0.25)
     st.pydeck_chart(pdk.Deck(layers=[#pdk.Layer('HexagonLayer',
                                      #           data=FilteredDF,
@@ -194,11 +194,11 @@ if  st.sidebar.checkbox('InteActive', value=True):
                              effects     = None ,
                              map_provider='mapbox', #'carto'
                              parameters  = None ))
-if  st.sidebar.checkbox('Simple'):
-    st.subheader('Simple Map:')
+if  st.sidebar.checkbox('2D'):
+    st.subheader('2D Map:')
     st.map(FilteredDF)
 st.divider()
-with st.container():
+with st.sidebar.container():
      C1, C2, C3, C4, C5 = st.columns(5)
      with C1:st.empty()
      with C2:st.empty()
