@@ -11,7 +11,7 @@ st.set_page_config(page_title='SYD', page_icon='🌃')
 # DATA:
 DATA         = 'datasets/SYD20230606AirBnB.csv.gz'
 @st.cache_data
-def load_data():
+def LoadData():
     rename   = {'name'                          :'listing',
                 'host_name'                     :'host'   ,
                 'room_type'                     :'room'   ,
@@ -19,8 +19,8 @@ def load_data():
                 'number_of_reviews'             :'reviews',
                 'availability_365'              :'365'    ,
                 'number_of_reviews_ltm'         :'ltm'    } # Last Twelve Months
-    data      = pd.read_csv(DATA                          )
-    data      = data.rename(columns=rename                )
+    data      = pd.read_csv(DATA)
+    data      = data.rename(columns=rename)
 # Cleaning:
     data      = data.fillna({'host' :'HOST'})
     data      = data.fillna({'last' :     0})
@@ -46,7 +46,7 @@ def load_data():
                 'description'  ]    
     data     = data[list(columns)]
     return data
-df           = load_data()
+df           = LoadData()
 hood         = df.neighbourhood.unique().tolist()
 room         = df.room.unique().tolist()
 # SIDE:
