@@ -78,8 +78,11 @@ st.title('Inside Sydney Airbnb')
 st.markdown('''
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-kauefs-blue.svg)](https://www.linkedin.com/in/kauefs/)
 [![GitHub](https://img.shields.io/badge/GitHub-kauefs-black.svg)](https://github.com/kauefs/)
+<a href='https://github.com/kauefs'           alt='GitHub'  ><img src='https://img.shields.io/badge/GitHub-000000?logo=github&logoColor=white'    />
+</a>
+<a href='https://www.linkedin.com/in/kauefs/' alt='LinkedIn'><img src='https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white'/></a>
 [![](https://img.shields.io/badge/Python-3-blue.svg)](https://www.python.org/)
-[![GPLv3 license](https://img.shields.io/badge/License-Apache2-black.svg)](http://perso.crans.org/besson/LICENSE.html)
+[![GPLv3 license](https://img.shields.io/badge/License-Apache2-black.svg)](https://www.apache.org/licenses/LICENSE-2.0)
             ''')
 st.write('23 September 2023')
 # WordCloud:
