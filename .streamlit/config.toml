@@ -5,7 +5,6 @@
 disableWatchdogWarning               =  false
 disableWidgetStateDuplicationWarning =  false
 showWarningOnDirectExecution         =  true
-dataFrameSerialization               = 'arrow'
 
 [logger]
 
@@ -29,20 +28,24 @@ enforceSerializableSessionState      =  false
 [browser]
 
 gatherUsageStats                     =  false
-serverAddress                        = 'localhost'
+#serverAddress                        = 'localhost'
 
 [server]
 
 fileWatcherType                      = 'auto'
 cookieSecret                         =  false
 runOnSave                            =  true
-port                                 =  8501
+#port                                 =  8501
 enableCORS                           =  true
 enableXsrfProtection                 =  true
 maxUploadSize                        =  200
 maxMessageSize                       =  200
 enableWebsocketCompression           =  false
 enableStaticServing                  =  false
+
+[deprecation]
+
+showPyplotGlobalUse                  =  true
 
 [theme]
 
@@ -54,6 +57,7 @@ textColor                            = '#FFFFFF'
 font                                 = 'sans serif' # Font Family (serif | sans serif | monospace)
 
 #https://www.w3schools.com/colors/colors_names.asp
+#https://htmlcolorcodes.com/
 #PurpleMediumSlate* #7B70EE
 #CornFlowerBlue*    #6595EE
 #Blue*              #0065FF
@@ -61,7 +65,11 @@ font                                 = 'sans serif' # Font Family (serif | sans 
 #DarkOrange         #FF8C00
 #OrangeRed          #FF4500
 #Gold               #FFD700
+#Yellow             #FFFF00
 #Lime               #00FF00
 #Green*             #4CAF50
 #Cyan               #00FFFF
 #DeepSkyBlue        #00BFFF
+#Maroon             #800000
+#Silver             #C0C0C0
+#Gray               #808080
