@@ -9,7 +9,7 @@
 </a>
 <a href='https://www.linkedin.com/in/kauefs/' alt='LinkedIn'><img src='https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white'/></a>
 [![](https://img.shields.io/badge/Python-3-blue.svg)](https://www.python.org/)
-[![GPLv3 license](https://img.shields.io/badge/License-Apache2-black.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![License](https://img.shields.io/badge/License-Apache_2.0-black.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 $$13\ July\ 2023$$
 
