@@ -5,7 +5,7 @@ import  seaborn          as sns
 import streamlit         as st
 import matplotlib.pyplot as plt
 from   pydeck.data_utils import compute_view
-from   wordcloud         import WordCloud, STOPWORDS, ImageColorGenerator
+from   wordcloud         import WordCloud, STOPWORDS
 from   PIL import Image
 st.set_page_config(page_title='SYD', page_icon='🌃')
 # DATA:
