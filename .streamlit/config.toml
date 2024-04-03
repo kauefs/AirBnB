@@ -41,9 +41,9 @@ maxMessageSize                       =  200
 enableWebsocketCompression           =  false
 enableStaticServing                  =  false
 
-[deprecation]
+#[deprecation]
 
-showPyplotGlobalUse                  =  true
+#showPyplotGlobalUse                  =  true
 
 [theme]
 
