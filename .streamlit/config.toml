@@ -4,7 +4,6 @@
 
 disableWidgetStateDuplicationWarning =  false
 showWarningOnDirectExecution         =  true
-dataFrameSerialization               = 'arrow'
 
 [logger]
 
@@ -15,12 +14,15 @@ messageFormat                        = '%(asctime)s %(message)s'
 
 showErrorDetails                     =  true
 toolbarMode                          = 'auto'
+showSidebarNavigation                =  true
 
 [runner]
 
+magicEnabled                         =  true
 postScriptGC                         =  true
 fastReruns                           =  true
 enforceSerializableSessionState      =  false
+enumCoercion                         = 'nameOnly'
 
 [browser]
 
@@ -31,6 +33,7 @@ serverAddress                        = 'localhost'
 
 fileWatcherType                      = 'auto'
 cookieSecret                         =  false
+headless                             =  false
 runOnSave                            =  true
 port                                 =  8501
 enableCORS                           =  true
