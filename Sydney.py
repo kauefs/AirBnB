@@ -9,9 +9,9 @@ from   wordcloud         import WordCloud, STOPWORDS
 from   PIL import Image
 st.set_page_config(page_title='SYD', page_icon='🌃')
 # DATA:
-DATA         = 'dataset/SYD20230606AirBnB.csv.gz'
+DATA         = 'datasets/SYD20230606AirBnB.csv.gz'
 @st.cache_data
-def LoadData():
+def load_data():
     rename   = {'name'                          :'listing',
                 'host_name'                     :'host'   ,
                 'room_type'                     :'room'   ,
@@ -19,8 +19,8 @@ def LoadData():
                 'number_of_reviews'             :'reviews',
                 'availability_365'              :'365'    ,
                 'number_of_reviews_ltm'         :'ltm'    } # Last Twelve Months
-    data      = pd.read_csv(DATA)
-    data      = data.rename(columns=rename)
+    data      = pd.read_csv(DATA                          )
+    data      = data.rename(columns=rename                )
 # Cleaning:
     data      = data.fillna({'host' :'HOST'})
     data      = data.fillna({'last' :     0})
@@ -32,26 +32,26 @@ def LoadData():
     data.drop(data[data.nights  >  90].index, axis=0, inplace=True)
     data.drop(data[data.reviews >  50].index, axis=0, inplace=True)
 # Selecting:
-    columns  = ['listing'      ,
-                'host'         ,
-                'neighbourhood',
-                'latitude'     ,
-                'longitude'    ,
-                'room'         ,
-                'price'        ,
-                'nights'       ,
-                'reviews'      ,
-                '365'          ,
-                'ltm'          ,
-                'description'  ]    
+    columns  = ['listing'       ,
+                'host'          ,
+                'neighbourhood' ,
+                'latitude'      ,
+                'longitude'     ,
+                'room'          ,
+                'price'         ,
+                'nights'        ,
+                'reviews'       ,
+                '365'           ,
+                'ltm'           ,
+                'description'   ]    
     data     = data[list(columns)]
     return data
-df           = LoadData()
+df           = load_data()
 hood         = df.neighbourhood.unique().tolist()
 room         = df.room.unique().tolist()
 # SIDE:
-st.sidebar.success(  'Sydney Airbnb')
-st.sidebar.header(   'Inside Airbnb')
+st.sidebar.success(  'SydNey AirBnB')
+st.sidebar.header(   'InSide AirBnB')
 st.sidebar.subheader('SYDNEY       ')
 st.sidebar.markdown( 'Data Analysis')
 st.sidebar.write('Data Base Date: 2023.06.06')
@@ -74,7 +74,7 @@ FilteredDF   = df[(df.neighbourhood.isin(FilteredHood)) & (df.room.isin(Filtered
 # Updating PlaceHoder:
 SideBarInfo.info('{} Filtered Listings'.format(FilteredDF.shape[0]))
 # MAIN:
-st.title('Inside Sydney Airbnb')
+st.title('InSide SydNey AirBnB')
 st.markdown('''
 [![GitHub](https://img.shields.io/badge/GitHub-000000?logo=github&logoColor=white)](https://github.com/kauefs/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kauefs/)
@@ -108,13 +108,13 @@ ax      = plt.axis('off')
 st.pyplot(fig,clear_figure=None,use_container_width=True)
 # Table:
 st.subheader('DATA')
-st.markdown( '''    Source: [Inside Airbnb](http://insideairbnb.com/get-the-data.html)''')
+st.markdown( '''   Source: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)''')
 st.markdown(f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
 if table.checkbox('Show Table Data', value=True):st.write(FilteredDF)
 # Columns:
 L, R = st.columns(2)
 with L:
-    st.subheader('Correlation Matrix')
+    st.subheader('CorrelationMatrix')
     mtx       = FilteredDF[['price','nights','reviews']].corr()
     fig1, ax1 = plt.subplots()
     ax1       = sns.heatmap(mtx,
@@ -129,7 +129,7 @@ with L:
               clear_figure=None,
               use_container_width=True)
 with R:
-    st.subheader(  'Heat Map')
+    st.subheader(   'HeatMap')
     corr      = FilteredDF[['price','nights','reviews']].corr()
     fig2, ax2 = plt.subplots()
     ax2       = sns.heatmap(corr,
@@ -145,8 +145,8 @@ with R:
               use_container_width=True)
 # MAP:
 st.sidebar.write('Map Options:')
-if  st.sidebar.checkbox('3D', value=True):
-    st.subheader('3D Map')
+if  st.sidebar.checkbox('InteActive', value=True):
+    st.subheader('InterActive Map')
 #initial = compute_view(FilteredDF[['longitude','latitude']], 0.25)
     st.pydeck_chart(pdk.Deck(layers=[#pdk.Layer('HexagonLayer',
                                      #           data=FilteredDF,
@@ -202,8 +202,8 @@ if  st.sidebar.checkbox('3D', value=True):
                              effects     = None ,
                              map_provider='mapbox', #'carto'
                              parameters  = None ))
-if  st.sidebar.checkbox('2D'):
-    st.subheader('2D Map:')
+if  st.sidebar.checkbox('Simple'):
+    st.subheader('Simple Map:')
     st.map(FilteredDF)
 st.sidebar.divider()
 with st.sidebar.container():
