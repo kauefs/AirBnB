@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 from   pydeck.data_utils import compute_view
 from   wordcloud         import WordCloud, STOPWORDS
 from   PIL import Image
-st.set_page_config(page_title='SYD', page_icon='🌃')
+st.set_page_config(page_title='SYD', page_icon='🌃', layout='wide', initial_sidebar_state='expanded')
 # DATA:
-DATA         = 'dataset/SYD20230606AirBnB.csv.gz'
+DATA         = 'datasets/SYD20230606AirBnB.csv.gz'
 @st.cache_data
 def load_data():
     rename   = {'name'                          :'listing',
@@ -45,7 +45,7 @@ def load_data():
                 'ltm'           ,
                 'description'   ]    
     data     = data[list(columns)]
-    return data
+    return     data
 df           = load_data()
 hood         = df.neighbourhood.unique().tolist()
 room         = df.room.unique().tolist()
@@ -81,7 +81,11 @@ st.markdown('''
 [![Python](https://img.shields.io/badge/Python-3-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-black.svg)](https://www.apache.org/licenses/LICENSE-2.0)
             ''')
-st.write('23 September 2023')
+with st.container():
+     cols = st.columns(3)
+     with cols[0]:st.empty()
+     with cols[1]:st.write('23 September 2023')
+     with cols[2]:st.empty()
 # WordCloud:
 #SYD         =  pd.read_csv('datasets/SYD20230606AirBnB.csv.gz')
 #select      =['description']
@@ -115,19 +119,8 @@ if table.checkbox('Show Table Data', value=True):st.write(FilteredDF)
 L, R = st.columns(2)
 with L:
     st.subheader('CorrelationMatrix')
-    mtx       = FilteredDF[['price','nights','reviews']].corr()
-    fig1, ax1 = plt.subplots()
-    ax1       = sns.heatmap(mtx,
-                            fmt       ='.2f',
-                            cbar      = True,
-                            annot     = True,
-                            square    = True,
-                            cmap      ='bone',
-                            linewidths=      1,
-                            linecolor ='white')
-    st.pyplot(fig1,
-              clear_figure=None,
-              use_container_width=True)
+    corr = FilteredDF[['price','nights','reviews']].corr().round(2)
+    corr
 with R:
     st.subheader(   'HeatMap')
     corr      = FilteredDF[['price','nights','reviews']].corr()
@@ -137,7 +130,7 @@ with R:
                             cbar      = True,
                             annot     = True,
                             square    = True,
-                            cmap      ='binary',
+                            cmap      ='bone',
                             linewidths=      1,
                             linecolor ='white')
     st.pyplot(fig2,
@@ -203,7 +196,7 @@ if  st.sidebar.checkbox('InteActive', value=True):
                              map_provider='mapbox', #'carto'
                              parameters  = None ))
 if  st.sidebar.checkbox('Simple'):
-    st.subheader('Simple Map:')
+    st.subheader(       'Simple Map:')
     st.map(FilteredDF)
 st.sidebar.divider()
 with st.sidebar.container():
