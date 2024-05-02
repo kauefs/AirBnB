@@ -45,7 +45,7 @@ def load_data():
                 'ltm'          ,
                 'description'  ]    
     data     = data[list(columns)]
-    return data
+    return     data
 df           = load_data()
 hood         = df.neighbourhood.unique().tolist()
 room         = df.room.unique().tolist()
