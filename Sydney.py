@@ -65,6 +65,10 @@ st.sidebar.header(   'SYDNEY       ')
 st.sidebar.subheader('Data Analysis')
 st.sidebar.markdown( '''Source: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)''')
 st.sidebar.write('Data Base Date: 2023.06.06')
+#   Maps            PlaceHolder:
+st.sidebar.write('Map Options:')
+InterActiveMap= st.sidebar.empty()
+SimpleMap     = st.sidebar.empty()
 # NeighbourHood MultiSelect:
 FilteredHood  = st.sidebar.multiselect(label  = 'NeighBourHood:',
                                       options=  hood,
@@ -139,9 +143,9 @@ with R:
     st.pyplot(fig2,
               clear_figure=None,
               use_container_width=True)
-# MAP:
+# MAPS:
 st.sidebar.write('Map Options:')
-if  st.sidebar.checkbox('InteActive', value=True):
+if  InterActive.checkbox('InteActive', value=True):
     st.subheader('InterActive Map')
 #initial = compute_view(FilteredDF[['longitude','latitude']], 0.25)
     st.pydeck_chart(pdk.Deck(layers=[#pdk.Layer('HexagonLayer',
@@ -198,8 +202,8 @@ if  st.sidebar.checkbox('InteActive', value=True):
                              effects     = None ,
                              map_provider='mapbox', #'carto'
                              parameters  = None ))
-if  st.sidebar.checkbox('Simple'):
-    st.subheader(       'Simple Map:')
+if  SimpleMap.checkbox('Simple'):
+    st.subheader( 'Simple Map:')
     st.map(FilteredDF)
 st.sidebar.divider()
 st.toast(    'SYD!',            icon='🌃')
