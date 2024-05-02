@@ -201,6 +201,28 @@ if  st.sidebar.checkbox('InteActive', value=True):
 if  st.sidebar.checkbox('Simple'):
     st.subheader(       'Simple Map:')
     st.map(FilteredDF)
+st.divider(          )
+# Correlation Matrix & HeatMap:
+L, R = st.columns(2)
+with L:
+    st.subheader('CorrelationMatrix')
+    corr      = FilteredDF[['price','nights','reviews']].corr().round(2)
+    corr
+with R:
+    st.subheader(   'HeatMap')
+    corr      = FilteredDF[['price','nights','reviews']].corr()
+    fig2, ax2 = plt.subplots()
+    ax2       = sns.heatmap(corr,
+                            fmt       ='.2f',
+                            cbar      = True,
+                            annot     = True,
+                            square    = True,
+                            cmap      ='bone',
+                            linewidths=      1,
+                            linecolor ='white')
+    st.pyplot(fig2,
+              clear_figure=None,
+              use_container_width=True)
 st.divider(        )
 # Data Table:
 st.subheader('DATA')
