@@ -106,7 +106,7 @@ with st.spinner('Loading…'):
                              mask=mask,
                              colormap='autumn',
                              background_color='black',
-                             relative_scaling=.5,
+                             #relative_scaling=.5,
                              max_font_size=None,
                              max_words=750,
                              contour_width=0,
