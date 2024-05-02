@@ -65,6 +65,7 @@ st.sidebar.header(   'SYDNEY       ')
 st.sidebar.subheader('Data Analysis')
 st.sidebar.markdown( '''Source: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)''')
 st.sidebar.write('Data Base Date: 2023.06.06')
+st.sidebar.divider(                          )
 #   Maps            PlaceHolder:
 st.sidebar.write('Map Options:')
 InterActiveMap= st.sidebar.empty()
@@ -144,9 +145,8 @@ with R:
               clear_figure=None,
               use_container_width=True)
 # MAPS:
-st.sidebar.write('Map Options:')
-if  InterActive.checkbox('InteActive', value=True):
-    st.subheader('InterActive Map')
+if  InterActiveMap.checkbox('InterActive', value=True):
+    st.subheader(           'InterActive Map')
 #initial = compute_view(FilteredDF[['longitude','latitude']], 0.25)
     st.pydeck_chart(pdk.Deck(layers=[#pdk.Layer('HexagonLayer',
                                      #           data=FilteredDF,
@@ -203,7 +203,7 @@ if  InterActive.checkbox('InteActive', value=True):
                              map_provider='mapbox', #'carto'
                              parameters  = None ))
 if  SimpleMap.checkbox('Simple'):
-    st.subheader( 'Simple Map:')
+    st.subheader(      'Simple Map')
     st.map(FilteredDF)
 st.sidebar.divider()
 st.toast(    'SYD!',            icon='🌃')
