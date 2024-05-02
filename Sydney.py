@@ -118,33 +118,27 @@ ax      = plt.imshow(WordCloud, interpolation='bilinear')
 ax      = plt.axis('off')
 st.pyplot(fig,clear_figure=None,use_container_width=True)
 st.divider(                                             )
-# Table:
-# st.subheader('DATA')
-# st.markdown( '''   Source: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)''')
-# st.markdown(f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
-# if table.checkbox('Show Table Data', value=True):st.write(FilteredDF)
-# st.divider(                                                         )
-# Columns:
-L, R = st.columns(2)
-with L:
-    st.subheader('CorrelationMatrix')
-    corr = FilteredDF[['price','nights','reviews']].corr().round(2)
-    corr
-with R:
-    st.subheader(   'HeatMap')
-    corr      = FilteredDF[['price','nights','reviews']].corr()
-    fig2, ax2 = plt.subplots()
-    ax2       = sns.heatmap(corr,
-                            fmt       ='.2f',
-                            cbar      = True,
-                            annot     = True,
-                            square    = True,
-                            cmap      ='bone',
-                            linewidths=      1,
-                            linecolor ='white')
-    st.pyplot(fig2,
-              clear_figure=None,
-              use_container_width=True)
+# # Correlation Matrix & HeatMap:
+# L, R = st.columns(2)
+# with L:
+#     st.subheader('CorrelationMatrix')
+#     corr = FilteredDF[['price','nights','reviews']].corr().round(2)
+#     corr
+# with R:
+#     st.subheader(   'HeatMap')
+#     corr      = FilteredDF[['price','nights','reviews']].corr()
+#     fig2, ax2 = plt.subplots()
+#     ax2       = sns.heatmap(corr,
+#                             fmt       ='.2f',
+#                             cbar      = True,
+#                             annot     = True,
+#                             square    = True,
+#                             cmap      ='bone',
+#                             linewidths=      1,
+#                             linecolor ='white')
+#     st.pyplot(fig2,
+#               clear_figure=None,
+#               use_container_width=True)
 # MAPS:
 if  InterActiveMap.checkbox('InterActive', value=True):
     st.subheader(           'InterActive Map')
@@ -206,6 +200,29 @@ if  InterActiveMap.checkbox('InterActive', value=True):
 if  SimpleMap.checkbox('Simple'):
     st.subheader(      'Simple Map')
     st.map(FilteredDF)
+st.divider(          )
+# Correlation Matrix & HeatMap:
+L, R = st.columns(2)
+with L:
+    st.subheader('CorrelationMatrix')
+    corr = FilteredDF[['price','nights','reviews']].corr().round(2)
+    corr
+with R:
+    st.subheader(   'HeatMap')
+    corr      = FilteredDF[['price','nights','reviews']].corr()
+    fig2, ax2 = plt.subplots()
+    ax2       = sns.heatmap(corr,
+                            fmt       ='.2f',
+                            cbar      = True,
+                            annot     = True,
+                            square    = True,
+                            cmap      ='bone',
+                            linewidths=      1,
+                            linecolor ='white')
+    st.pyplot(fig2,
+              clear_figure=None,
+              use_container_width=True)
+st.divider(                           )
 # Data Table:
 st.subheader('DATA')
 st.write(    'InSide SydNey AirBnB')
