@@ -106,14 +106,14 @@ with st.spinner('Loading…'):
                              mask=mask,
                              colormap='autumn',
                              background_color='black',
-                             #relative_scaling=.5,
+                             relative_scaling=.5,
                              max_font_size=None,
                              max_words=750,
                              contour_width=0,
                              contour_color='black',
                              width=750, height=750, margin=0).generate(all)
 fig, ax = plt.subplots(facecolor='k')
-ax      = plt.imshow(WordCloud, interpolation='bilinear')
+ax      = plt.imshow(WordCloud, interpolation=None)
 ax      = plt.axis('off')
 st.pyplot(fig,clear_figure=None,use_container_width=True)
 st.divider(                                             )
