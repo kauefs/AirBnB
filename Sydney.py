@@ -19,18 +19,18 @@ def load_data():
                 'number_of_reviews'             :'reviews',
                 'availability_365'              :'365'    ,
                 'number_of_reviews_ltm'         :'ltm'    } # Last Twelve Months
-    data      = pd.read_csv(DATA                          )
-    data      = data.rename(columns=rename                )
+    data         =  pd.read_csv(DATA                      )
+    data         =data.rename(columns=rename              )
 # Cleaning:
-    data      = data.fillna({'host' :'HOST'})
-    data      = data.fillna({'last' :     0})
-    data      = data.fillna({'month':     0})
-    data      = data.dropna(subset=['description'], axis=0)
-    data.price=data.price.replace('[\$,]', '', regex=True).astype(float)
+    data         =data.fillna({'host' :'HOST'})
+    data         =data.fillna({'last' :     0})
+    data         =data.fillna({'month':     0})
+    data         =data.dropna(subset=['description'], axis=0)
+    data['price']=data.price.replace('[\$,]', '', regex=True).astype(float)
 # OutLiers:
-    data.drop(data[data.price   > 600].index, axis=0, inplace=True)
-    data.drop(data[data.nights  >  90].index, axis=0, inplace=True)
-    data.drop(data[data.reviews >  50].index, axis=0, inplace=True)
+    data.drop(data[data['price'  ] > 600].index, axis=0, inplace=True)
+    data.drop(data[data['nights' ] >  90].index, axis=0, inplace=True)
+    data.drop(data[data['reviews'] >  50].index, axis=0, inplace=True)
 # Selecting:
     columns  = ['listing'       ,
                 'host'          ,
@@ -65,7 +65,6 @@ st.sidebar.header(   'SYDNEY       ')
 st.sidebar.subheader('Data Analysis')
 st.sidebar.markdown( '''Source: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)''')
 st.sidebar.write('Data Base Date: 2023.06.06')
-st.sidebar.divider(                          )
 #   Maps            PlaceHolder:
 st.sidebar.write('Map Options:')
 InterActiveMap= st.sidebar.empty()
@@ -205,5 +204,5 @@ if  InterActiveMap.checkbox('InterActive', value=True):
 if  SimpleMap.checkbox('Simple'):
     st.subheader(      'Simple Map')
     st.map(FilteredDF)
-st.sidebar.divider()
+st.divider(      )
 st.toast(    'SYD!',            icon='🌃')
