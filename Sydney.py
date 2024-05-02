@@ -9,7 +9,7 @@ from   wordcloud         import WordCloud, STOPWORDS
 from   PIL import Image
 st.set_page_config(page_title='SYD', page_icon='🌃', layout='wide', initial_sidebar_state='expanded')
 # DATA:
-DATA         = 'datasets/SYD20230606AirBnB.csv.gz'
+DATA         = 'dataset/SYD20230606AirBnB.csv.gz'
 @st.cache_data
 def load_data():
     rename   = {'name'                          :'listing',
