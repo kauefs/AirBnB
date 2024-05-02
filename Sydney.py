@@ -113,7 +113,33 @@ fig, ax = plt.subplots(facecolor='k')
 ax      = plt.imshow(WordCloud, interpolation='bilinear')
 ax      = plt.axis('off')
 st.pyplot(fig,clear_figure=None,use_container_width=True)
-# MAPS:
+# Table:
+st.subheader('DATA')
+st.markdown( '''   Source: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)''')
+st.markdown(f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
+if table.checkbox('Show Table Data', value=True):st.write(FilteredDF)
+# Columns:
+L, R = st.columns(2)
+with L:
+    st.subheader('CorrelationMatrix')
+    corr = FilteredDF[['price','nights','reviews']].corr().round(2)
+    corr
+with R:
+    st.subheader(   'HeatMap')
+    corr      = FilteredDF[['price','nights','reviews']].corr()
+    fig2, ax2 = plt.subplots()
+    ax2       = sns.heatmap(corr,
+                            fmt       ='.2f',
+                            cbar      = True,
+                            annot     = True,
+                            square    = True,
+                            cmap      ='bone',
+                            linewidths=      1,
+                            linecolor ='white')
+    st.pyplot(fig2,
+              clear_figure=None,
+              use_container_width=True)
+# MAP:
 st.sidebar.write('Map Options:')
 if  st.sidebar.checkbox('InteActive', value=True):
     st.subheader('InterActive Map')
@@ -175,27 +201,6 @@ if  st.sidebar.checkbox('InteActive', value=True):
 if  st.sidebar.checkbox('Simple'):
     st.subheader(       'Simple Map:')
     st.map(FilteredDF)
-# Correlation Matrix & HeatMap:
-L, R = st.columns(2)
-with L:
-    st.subheader('CorrelationMatrix')
-    corr      = FilteredDF[['price','nights','reviews']].corr().round(2)
-    corr
-with R:
-    st.subheader(   'HeatMap')
-    corr      = FilteredDF[['price','nights','reviews']].corr()
-    fig2, ax2 = plt.subplots()
-    ax2       = sns.heatmap(corr,
-                            fmt       ='.2f',
-                            cbar      = True,
-                            annot     = True,
-                            square    = True,
-                            cmap      ='bone',
-                            linewidths=      1,
-                            linecolor ='white')
-    st.pyplot(fig2,
-              clear_figure=None,
-              use_container_width=True)
 st.divider(        )
 # Data Table:
 st.subheader('DATA')
