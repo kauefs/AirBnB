@@ -93,26 +93,26 @@ st.divider(                    )
 st.title('Inside Sydney Airbnb')
 st.divider(                    )
 # WordCloud:
-# SYD         =  pd.read_csv('listings.csv.gz')
-# select      =['description']
-# text        =  SYD[list(select)]
-# description =  text.dropna(subset=['description'], axis=0)['description']
+#SYD         =  pd.read_csv('datasets/SYD20230606AirBnB.csv.gz')
+#select      =['description']
+#text        =  SYD[list(select)]
+#description =  text.dropna(subset=['description'], axis=0)['description']
 with st.spinner('Loading…'):
     all         = ' '.join(words for words in FilteredDF['description'])
     StopWords   =  set(STOPWORDS)
     StopWords.update(['b', 'PID', 'will', 'number', 'br', 'EXT'])
     mask        =  np.array(Image.open('img/sydney.jpg'))
     WordCloud   =  WordCloud(stopwords=StopWords,
-                            mask=mask,
-                            colormap='autumn',
-                            background_color='black',
-                            relative_scaling=.5,
-                            max_font_size=None,
-                            max_words=750,
-                            contour_width=0,
-                            contour_color='black',
-                            width=750, height=750, margin=0).generate(all)
-fig, ax = plt.subplots(facecolor='#000000')
+                             mask=mask,
+                             colormap='autumn',
+                             background_color='black',
+                             relative_scaling=.5,
+                             max_font_size=None,
+                             max_words=750,
+                             contour_width=0,
+                             contour_color='black',
+                             width=750, height=750, margin=0).generate(all)
+fig, ax = plt.subplots(facecolor='k')
 ax      = plt.imshow(WordCloud, interpolation='bilinear')
 ax      = plt.axis('off')
 st.pyplot(fig,clear_figure=None,use_container_width=True)
