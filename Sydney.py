@@ -19,8 +19,8 @@ def load_data():
                 'number_of_reviews'             :'reviews',
                 'availability_365'              :'365'    ,
                 'number_of_reviews_ltm'         :'ltm'    } # Last Twelve Months
-    data      = pd.read_csv(DATA                           )
-    data      = data.rename(columns=rename                 )
+    data      = pd.read_csv(DATA                          )
+    data      = data.rename(columns=rename                )
 # Cleaning:
     data      = data.fillna({'host' :'HOST'})
     data      = data.fillna({'last' :     0})
@@ -32,66 +32,61 @@ def load_data():
     data.drop(data[data.nights  >  90].index, axis=0, inplace=True)
     data.drop(data[data.reviews >  50].index, axis=0, inplace=True)
 # Selecting:
-    columns  = ['listing'      ,
-                'host'         ,
-                'neighbourhood',
-                'latitude'     ,
-                'longitude'    ,
-                'room'         ,
-                'price'        ,
-                'nights'       ,
-                'reviews'      ,
-                '365'          ,
-                'ltm'          ,
-                'description'  ]    
+    columns  = ['listing'       ,
+                'host'          ,
+                'neighbourhood' ,
+                'latitude'      ,
+                'longitude'     ,
+                'room'          ,
+                'price'         ,
+                'nights'        ,
+                'reviews'       ,
+                '365'           ,
+                'ltm'           ,
+                'description'   ]    
     data     = data[list(columns)]
     return     data
 df           = load_data()
 hood         = df.neighbourhood.unique().tolist()
 room         = df.room.unique().tolist()
 # SIDE:
-# st.sidebar.title('ƊⱭȾɅViƧi🧿Ƞ')
-st.sidebar.markdown('''
+st.sidebar.success(  'SydNey AirBnB')
+st.sidebar.header(   'InSide AirBnB')
+st.sidebar.subheader('SYDNEY       ')
+st.sidebar.markdown( 'Data Analysis')
+st.sidebar.write('Data Base Date: 2023.06.06')
+# PlaceHolder for Table:
+table        = st.sidebar.empty()
+# PlaceHolder for Filtered Listings:
+SideBarInfo  = st.sidebar.empty()
+# MultiSelect for NeighBourHood:
+FilteredHood = st.sidebar.multiselect(label  = 'NeighBourHood:',
+                                      options=  hood,
+                                      default=['Sydney, New South Wales, Australia'])
+# MultiSelect for RoomType:
+FilteredRoom = st.sidebar.multiselect(label  = 'RoomType:',
+                                      options=  room,
+                                      default=['Entire home/apt','Private room','Shared room','Hotel room'])
+# Price Slider Selection:
+FilteredPrice= st.sidebar.slider('Price:', 0.01, 599.99, 255.75, step=None)
+# Filtered Data:
+FilteredDF   = df[(df.neighbourhood.isin(FilteredHood)) & (df.room.isin(FilteredRoom)) & (df.price <= FilteredPrice)]
+# Updating PlaceHoder:
+SideBarInfo.info('{} Filtered Listings'.format(FilteredDF.shape[0]))
+# MAIN:
+st.title('InSide SydNey AirBnB')
+st.markdown('''
 [![GitHub](  https://img.shields.io/badge/-000000?logo=github&logoColor=FFFFFF)](                                 https://github.com/kauefs/)
 [![Medium](  https://img.shields.io/badge/-000000?logo=medium&logoColor=FFFFFF)](                                 https://medium.com/@kauefs)
 [![LinkedIn](https://img.shields.io/badge/-0077B5?logo=linkedin&logoColor=FFFFFF)](                               https://www.linkedin.com/in/kauefs/)
 [![Python](  https://img.shields.io/badge/-3-4584B6?logo=python&logoColor=FFDE57&labelColor=4584B6&color=646464)](https://www.python.org/)
-[![License]( https://img.shields.io/github/license/kauefs/StreamLit?style=flat&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71&color=D22128)](https://www.apache.org/licenses/LICENSE-2.0)
+[![License]( https://img.shields.io/badge/Apache_2.0-D22128?style=flat&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71&color=D22128)](https://www.apache.org/licenses/LICENSE-2.0)
             ''')
-st.sidebar.text( '23 September 2023')
-st.sidebar.success(  'InSide AirBnB')
-st.sidebar.divider(                 )
-st.sidebar.header(   'SYDNEY       ')
-st.sidebar.subheader('Data Analysis')
-st.sidebar.markdown( '''Source: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)''')
-#   Maps            PlaceHolder:
-st.sidebar.write('Map Options:')
-InterActiveMap= st.sidebar.empty()
-SimpleMap     = st.sidebar.empty()
-# NeighbourHood MultiSelect:
-FilteredHood  = st.sidebar.multiselect(label  = 'NeighBourHood:',
-                                      options=  hood,
-                                      default=['Sydney, New South Wales, Australia'])
-# Room Type MultiSelect:
-FilteredRoom  = st.sidebar.multiselect(label  = 'RoomType:',
-                                      options=  room,
-                                      default=['Entire home/apt','Private room','Shared room','Hotel room'])
-# Price Slider:
-FilteredPrice = st.sidebar.slider('Price:', 0.01, 599.99, 255.75, step=None)
-# Filtered Listings PlaceHolder:
-SideBarInfo   = st.sidebar.empty()
-# Filtered Data:
-FilteredDF    = df[(df.neighbourhood.isin(FilteredHood)) & (df.room.isin(FilteredRoom)) & (df.price <= FilteredPrice)]
-# PlaceHoder UpDate:
-SideBarInfo.info('{} Filtered Listings'.format(FilteredDF.shape[0]))
-#   Table           PlaceHolder:
-table         = st.sidebar.empty()
-st.sidebar.divider(              )
-st.sidebar.markdown('''©2023™ [ƊⱭȾɅViƧi🧿Ƞ](https://datavision.one/)''')
-# MAIN:
-st.divider(                    )
-st.title('Inside Sydney Airbnb')
-st.divider(                    )
+with st.container():
+     cols = st.columns(3)
+     with cols[0]:st.empty()
+     with cols[1]:st.write('23 September 2023')
+     with cols[2]:st.empty()
 # WordCloud:
 #SYD         =  pd.read_csv('datasets/SYD20230606AirBnB.csv.gz')
 #select      =['description']
@@ -106,21 +101,47 @@ with st.spinner('Loading…'):
                              mask=mask,
                              colormap='autumn',
                              background_color='black',
-                             relative_scaling=.5,
+                            #relative_scaling=.5,
                              max_font_size=None,
                              max_words=750,
                              contour_width=0,
                              contour_color='black',
                              width=750, height=750, margin=0).generate(all)
 fig, ax = plt.subplots(facecolor='k')
-ax      = plt.imshow(WordCloud, interpolation=None)
+ax      = plt.imshow(WordCloud, interpolation='bilinear')
 ax      = plt.axis('off')
 st.pyplot(fig,clear_figure=None,use_container_width=True)
-st.divider(                                             )
-# MAPS:
-if  InterActiveMap.checkbox('InteActive', value=True):
+# Table:
+st.subheader('DATA')
+st.markdown( '''   Source: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)''')
+st.markdown(f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
+if table.checkbox('Show Table Data', value=True):st.write(FilteredDF)
+# Columns:
+L, R = st.columns(2)
+with L:
+    st.subheader('CorrelationMatrix')
+    corr = FilteredDF[['price','nights','reviews']].corr().round(2)
+    corr
+with R:
+    st.subheader(   'HeatMap')
+    corr      = FilteredDF[['price','nights','reviews']].corr()
+    fig2, ax2 = plt.subplots()
+    ax2       = sns.heatmap(corr,
+                            fmt       ='.2f',
+                            cbar      = True,
+                            annot     = True,
+                            square    = True,
+                            cmap      ='bone',
+                            linewidths=      1,
+                            linecolor ='white')
+    st.pyplot(fig2,
+              clear_figure=None,
+              use_container_width=True)
+# MAP:
+st.sidebar.write('Map Options:')
+if  st.sidebar.checkbox('InteActive', value=True):
     st.subheader('InterActive Map')
-# initial = compute_view(FilteredDF[['longitude','latitude']], 0.25)
+#initial = compute_view(FilteredDF[['longitude','latitude']], 0.25)
     st.pydeck_chart(pdk.Deck(layers=[#pdk.Layer('HexagonLayer',
                                      #           data=FilteredDF,
                                      #           disk_resolution=  10,
@@ -175,36 +196,13 @@ if  InterActiveMap.checkbox('InteActive', value=True):
                              effects     = None ,
                              map_provider='mapbox', #'carto'
                              parameters  = None ))
-if  SimpleMap.checkbox('Simple'):
-    st.subheader('Simple Map:')
+if  st.sidebar.checkbox('Simple'):
+    st.subheader(       'Simple Map:')
     st.map(FilteredDF)
-st.divider(          )
-# Correlation Matrix & HeatMap:
-L, R = st.columns(2)
-with L:
-    st.subheader('CorrelationMatrix')
-    corr      = FilteredDF[['price','nights','reviews']].corr().round(2)
-    corr
-with R:
-    st.subheader(   'HeatMap')
-    corr      = FilteredDF[['price','nights','reviews']].corr()
-    fig2, ax2 = plt.subplots()
-    ax2       = sns.heatmap(corr,
-                            fmt       ='.2f',
-                            cbar      = True,
-                            annot     = True,
-                            square    = True,
-                            cmap      ='bone',
-                            linewidths=      1,
-                            linecolor ='white')
-    st.pyplot(fig2,
-              clear_figure=None,
-              use_container_width=True)
-st.divider(        )
-# Data Table:
-st.subheader('DATA')
-st.write(    'InSide SydNey AirBnB')
-st.markdown(f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
-if table.checkbox('DataFrame', value=True):st.write(FilteredDF)
-st.divider(      )
-st.toast(    'SYD!',            icon='🌃')
+st.sidebar.divider()
+with st.sidebar.container():
+     cols = st.columns(3)
+     with cols[0]:st.empty()
+     with cols[1]:st.markdown('''©2023™''')
+     with cols[2]:st.empty()
+st.toast('SYD!', icon='🌃')
