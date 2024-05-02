@@ -79,12 +79,10 @@ FilteredRoom  = st.sidebar.multiselect(label  = 'RoomType:',
                                       default=['Entire home/apt','Private room','Shared room','Hotel room'])
 # Price Slider:
 FilteredPrice = st.sidebar.slider('Price:', 0.01, 599.99, 255.75, step=None)
-# Filtered Listings PlaceHolder:
-SideBarInfo   = st.sidebar.empty()
 # Filtered Data:
 FilteredDF    = df[(df.neighbourhood.isin(FilteredHood)) & (df.room.isin(FilteredRoom)) & (df.price <= FilteredPrice)]
 # PlaceHoder UpDate:
-SideBarInfo.info('{} Filtered Listings'.format(FilteredDF.shape[0]))
+st.sidebar.info('{} Filtered Listings'.format(FilteredDF.shape[0]))
 #   Table           PlaceHolder:
 table         = st.sidebar.empty()
 st.sidebar.divider(              )
@@ -118,27 +116,6 @@ ax      = plt.imshow(WordCloud, interpolation='bilinear')
 ax      = plt.axis('off')
 st.pyplot(fig,clear_figure=None,use_container_width=True)
 st.divider(                                             )
-# # Correlation Matrix & HeatMap:
-# L, R = st.columns(2)
-# with L:
-#     st.subheader('CorrelationMatrix')
-#     corr = FilteredDF[['price','nights','reviews']].corr().round(2)
-#     corr
-# with R:
-#     st.subheader(   'HeatMap')
-#     corr      = FilteredDF[['price','nights','reviews']].corr()
-#     fig2, ax2 = plt.subplots()
-#     ax2       = sns.heatmap(corr,
-#                             fmt       ='.2f',
-#                             cbar      = True,
-#                             annot     = True,
-#                             square    = True,
-#                             cmap      ='bone',
-#                             linewidths=      1,
-#                             linecolor ='white')
-#     st.pyplot(fig2,
-#               clear_figure=None,
-#               use_container_width=True)
 # MAPS:
 if  InterActiveMap.checkbox('InterActive', value=True):
     st.subheader(           'InterActive Map')
@@ -197,10 +174,11 @@ if  InterActiveMap.checkbox('InterActive', value=True):
                              effects     = None ,
                              map_provider='mapbox', #'carto'
                              parameters  = None ))
+    st.divider(                    )
 if  SimpleMap.checkbox('Simple'):
     st.subheader(      'Simple Map')
     st.map(FilteredDF)
-st.divider(          )
+    st.divider(                    )
 # Correlation Matrix & HeatMap:
 L, R = st.columns(2)
 with L:
@@ -224,9 +202,10 @@ with R:
               use_container_width=True)
 st.divider(                           )
 # Data Table:
-st.subheader('DATA')
-st.write(    'InSide SydNey AirBnB')
-st.markdown(f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
-if table.checkbox('DataFrame', value=True):st.write(FilteredDF)
-st.divider(      )
-st.toast(    'SYD!',            icon='🌃')
+if table.checkbox('DataFrame', value=True):
+    st.subheader('DATA')
+    st.write(    'InSide SydNey AirBnB')
+    st.markdown(f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
+    st.write(FilteredDF)
+    st.divider(        )
+st.toast(         'SYD!',             icon='🌃')
