@@ -118,10 +118,10 @@ ax      = plt.imshow(WordCloud, interpolation='bilinear')
 ax      = plt.axis('off')
 st.pyplot(fig,clear_figure=None,use_container_width=True)
 # Table:
-st.subheader('DATA')
-st.markdown( '''   Source: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)''')
-st.markdown(f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
-if table.checkbox('Show Table Data', value=True):st.write(FilteredDF)
+# st.subheader('DATA')
+# st.markdown( '''   Source: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)''')
+# st.markdown(f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
+# if table.checkbox('Show Table Data', value=True):st.write(FilteredDF)
 # Columns:
 L, R = st.columns(2)
 with L:
@@ -204,5 +204,10 @@ if  InterActiveMap.checkbox('InterActive', value=True):
 if  SimpleMap.checkbox('Simple'):
     st.subheader(      'Simple Map')
     st.map(FilteredDF)
+# Data Table:
+st.subheader('DATA')
+st.write(    'InSide SydNey AirBnB')
+st.markdown(f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
+if table.checkbox('DataFrame', value=True):st.write(FilteredDF)
 st.divider(      )
 st.toast(    'SYD!',            icon='🌃')
