@@ -1,12 +1,12 @@
-import  numpy            as np
-import  pandas           as pd
-import  pydeck           as pdk
-import  seaborn          as sns
-import streamlit         as st
-import matplotlib.pyplot as plt
-from   pydeck.data_utils import compute_view
-from   wordcloud         import WordCloud, STOPWORDS
-from   PIL import Image
+import  streamlit              as    st
+import      numpy              as    np
+import     pandas              as    pd
+import     pydeck              as    pdk
+import    seaborn              as    sns
+import matplotlib.pyplot       as    plt
+from       pydeck.data_utils import  compute_view
+from    wordcloud            import  WordCloud, STOPWORDS
+from          PIL            import  Image
 st.set_page_config(page_title='SYD', page_icon='🌃', layout='wide', initial_sidebar_state='expanded')
 # DATA:
 DATA         = 'dataset/SYD20230606AirBnB.csv.gz'
@@ -50,7 +50,7 @@ df           = load_data()
 hood         = df.neighbourhood.unique().tolist()
 room         = df.room.unique().tolist()
 # SIDE:
-st.sidebar.title(    'ƊⱭȾɅViƧi🧿Ƞ' )
+st.sidebar.title(    'ƊⱭȾɅViƧi🧿Ƞ&trade;' )
 st.sidebar.success(  'InSide AirBnB')
 st.sidebar.divider(                 )
 st.sidebar.header(   'SYDNEY       ')
@@ -84,11 +84,11 @@ st.sidebar.markdown('''
 [![GitHub](     https://img.shields.io/badge/-000000?logo=github&logoColor=FFFFFF)](https://github.com/kauefs/)
 [![Medium](     https://img.shields.io/badge/-000000?logo=medium&logoColor=FFFFFF)](https://medium.com/@kauefs)
 [![LinkedIn](   https://img.shields.io/badge/-0077B5?logo=linkedin&logoColor=FFFFFF)](https://www.linkedin.com/in/kauefs/)
-[![Python](     https://img.shields.io/badge/-3-4584B6?logo=python&logoColor=FFDE57&labelColor=4584B6&color=646464)](https://www.python.org/)
+[![Python](     https://img.shields.io/badge/3-646464?logo=python&logoColor=FFDE57&labelColor=4584B6)](https://www.python.org/)
 
-[![License](    https://img.shields.io/badge/Apache--2.0-D22128?style=flat&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71&color=D22128)](https://www.apache.org/licenses/LICENSE-2.0)
+[![License](    https://img.shields.io/badge/Apache--2.0-D22128?&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71)](https://www.apache.org/licenses/LICENSE-2.0)
 
-[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&logo=&logoColor=0065FF&label=&copy;2023&labelColor=0065FF&color=0065FF)](https://datavision.one/)
+[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&logoColor=0065FF&label=&copy;2023&labelColor=0065FF)](https://datavision.one/)
                     ''')
 # MAIN:
 st.divider(                    )
