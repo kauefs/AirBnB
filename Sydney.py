@@ -99,7 +99,7 @@ st.divider(                    )
 #select      =['description']
 #text        =  SYD[list(select)]
 #description =  text.dropna(subset=['description'], axis=0)['description']
-with st.spinner('Loading…'):
+with st.spinner(text='Loading…', show_time=True):
     all         = ' '.join(words for words in FilteredDF['description'])
     StopWords   =  set(STOPWORDS)
     StopWords.update(['b', 'PID', 'will', 'number', 'br', 'EXT'])
