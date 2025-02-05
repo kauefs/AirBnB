@@ -1,7 +1,9 @@
 pip
+certifi
 numpy
 pandas
 pydeck
 seaborn
 matplotlib
 wordcloud
+streamlit<=1.40.0
