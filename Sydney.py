@@ -26,7 +26,7 @@ def load_data():
     data         =data.fillna({'last' :     0})
     data         =data.fillna({'month':     0})
     data         =data.dropna(subset=['description'], axis=0)
-    data['price']=data.price.replace('[\$,]', '', regex=True).astype(float)
+    data['price']=data.price.replace(r'[\$,]', '', regex=True).astype(float)
 # OutLiers:
     data.drop(data[data['price'  ] > 600].index, axis=0, inplace=True)
     data.drop(data[data['nights' ] >  90].index, axis=0, inplace=True)
