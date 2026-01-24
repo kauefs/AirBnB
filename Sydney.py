@@ -59,25 +59,25 @@ st.sidebar.markdown ('''Source: [InSide AirB**n**B](http://insideairbnb.com/get-
 st.sidebar.write    (  'Data Base Date: 2023.06.06')
 #   Maps            PlaceHolder:
 st.sidebar.write('Map Options:')
-InterActiveMap= st.sidebar.empty()
-SimpleMap     = st.sidebar.empty()
+InterActiveMap= st.sidebar.empty( )
+SimpleMap     = st.sidebar.empty( )
 # NeighbourHood MultiSelect:
-FilteredHood  = st.sidebar.multiselect(label  = 'NeighBourHood:',
+FilteredHood  = st.sidebar.multiselect(label = 'NeighBourHood:',
                                       options=  hood,
                                       default=['Sydney, New South Wales, Australia'])
 # Room Type MultiSelect:
-FilteredRoom  = st.sidebar.multiselect(label  = 'RoomType:',
+FilteredRoom  = st.sidebar.multiselect(label = 'RoomType:',
                                       options=  room,
                                       default=['Entire home/apt','Private room','Shared room','Hotel room'])
 # Price Slider:
 FilteredPrice = st.sidebar.slider('Price:', 0.01, 599.99, 255.75, step=None)
 # Filtered Data:
-FilteredDF    = df[(df.neighbourhood.isin(FilteredHood)) & (df.room.isin(FilteredRoom)) & (df.price <= FilteredPrice)]
+FilteredDF    = df[(df.neighbourhood.isin(FilteredHood))&(df.room.isin(FilteredRoom))&(df.price <= FilteredPrice)]
 # PlaceHoder UpDate:
 st.sidebar.info('{} Filtered Listings'.format(FilteredDF.shape[0]))
 #   Table           PlaceHolder:
-table         = st.sidebar.empty()
-st.sidebar.divider(              )
+table         = st.sidebar.empty( )
+st.sidebar.divider(               )
 st.sidebar.markdown('''
 ![2023.09.23   ](https://img.shields.io/badge/2023.09.23-000000)
 
@@ -102,22 +102,22 @@ st.divider(                    )
 with st.spinner(text='Loading…'):#, show_time=True):
     all         = ' '.join(words for words in FilteredDF['description'])
     StopWords   =  set(STOPWORDS)
-    StopWords.update(['b', 'PID', 'will', 'number', 'br', 'EXT'])
+    StopWords.update(['b','PID','will','number','br','EXT'])
     mask        =  np.array(Image.open('img/sydney.jpg'))
     WordCloud   =  WordCloud(stopwords=StopWords,
                              mask=mask,
                              colormap='autumn',
-                             background_color='black',
+                             background_color='#000000',
                             #relative_scaling=.5,
                              max_font_size=None,
                              max_words=750,
                              contour_width=0,
-                             contour_color='black',
+                             contour_color='#000000',
                              width=750, height=750, margin=0).generate(all)
 fig, ax = plt.subplots(facecolor='k')
 ax      = plt.imshow(WordCloud, interpolation='bilinear')
 ax      = plt.axis('off')
-st.pyplot(fig,clear_figure=None,use_container_width=True)
+st.pyplot(fig,clear_figure=None,width='content')
 st.divider(                                             )
 # MAPS:
 if  InterActiveMap.checkbox('InterActive', value=True):
@@ -143,23 +143,23 @@ if  InterActiveMap.checkbox('InterActive', value=True):
                                      #           auto_highlight=  True,
                                      #           get_fill_color=[255, 255, 255, 55],    # RGBA
                                      #           get_line_color=[  0,   0,   0,  0],
-                                     #           get_radius    =1,
+                                     #           get_radius    =   1,
                                      #           pickable      =       True),
                                      pdk.Layer('ColumnLayer',
                                                 data           =  FilteredDF,
                                                 radius         =  15,
                                                 disk_resolution=  15,
                                                 get_position   =['longitude','latitude'],
-                                                get_elevation  = 'price'    ,
+                                                get_elevation  =   'price'  ,
                                                 elevation_scale= 7.5,
-                                                elevation_range=[0, 75],
+                                                elevation_range=[  0,  75],
                                                 get_fill_color =[255, 255, 255, 55],    # RGBA
                                                 get_line_color =[  0,   0,   0,  0],
                                                 auto_highlight =  True,
                                                 pickable       =  True,
                                                 extruded       =  True,
                                                 coverage       =   1)],
-                             views=[{'@@type':'MapView', 'controller':True}],
+                             views=[{'@@type':'MapView','controller':True}],
                              map_style=pdk.map_styles.SATELLITE,
                              api_keys = None ,
                              initial_view_state=pdk.ViewState(#initial,
@@ -200,9 +200,7 @@ with R:
                             cmap      ='bone',
                             linewidths=      1,
                             linecolor ='white')
-    st.pyplot(fig2,
-              clear_figure=None,
-              use_container_width=True)
+    st.pyplot(fig2,clear_figure=None,width='content')
 st.divider(                           )
 # Data Table:
 if table.checkbox('DataFrame', value=True):
