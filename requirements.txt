@@ -4,6 +4,7 @@ numpy
 pandas
 pydeck
 seaborn
+altair<5
 matplotlib
 wordcloud
-streamlit==1.41.0
+streamlit>1.49.0
