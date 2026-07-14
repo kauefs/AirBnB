@@ -11,6 +11,26 @@ st.set_page_config(page_title='SYD', page_icon='🌃', layout='wide', initial_si
 # DATA:
 DATA         =  'dataset/SYD20230606AirBnB.csv.gz'
 @st.cache_data
+def generateWordCloud(text, StopWordsList):
+    '''
+    Generates and returns a WordCloud object based on filtered text.
+    Passing text_data as an argument ensures it only reruns if data changes!
+    '''
+    # Note: reconstructing the set inside because sets are not natively hashable by st.cache_data
+    stopwords=set(StopWordsList)
+    try: mask=np.array(Image.open('img/sydney.jpg'))
+    except Exception:mask=None # FallBack to Standard Square LayOut if Image is Missing
+    WC       =WordCloud(stopwords=stopwords,
+                        mask=mask,
+                        colormap='autumn',
+                        background_color='#000000',
+                       #relative_scaling=.5,
+                        max_font_size=None,
+                        max_words    = 500,
+                        contour_width=   0,
+                        contour_color='#000000',
+                        width=750, height=750, margin=0).generate(text)
+    return WC
 def load_data( ):
     rename   = {'name'                          :'listing',
                 'host_name'                     :'host'   ,
@@ -100,24 +120,15 @@ st.divider( )
 #text        =  SYD[list(select)]
 #description =  text.dropna(subset=['description'], axis=0)['description']
 if not FilteredDF.empty and FilteredDF['description'].str.cat(sep='').strip( ):
-    with st.spinner(text='Generating WordCloud…', show_time=True):
+    with st.spinner(text='Rendering WordCloud…', show_time=True):
         all             =''.join(words for words in FilteredDF['description'].dropna( ))
-        StopWords       =set(STOPWORDS)
-        StopWords.update(['b','PID','will','number','br','EXT'])
+        StopWords       =list(STOPWORDS)
+        StopWords.extend(['b','PID','will','number','br','EXT'])
         try: mask       =np.array(Image.open('img/sydney.jpg'))
         except Exception:mask=None # FallBack to Standard Square LayOut if Image is Missing
-        WC              =WordCloud(stopwords=StopWords,
-                                   mask=mask,
-                                   colormap='autumn',
-                                   background_color='#000000',
-                                  #relative_scaling=.5,
-                                   max_font_size=None,
-                                   max_words    = 750,
-                                   contour_width=   0,
-                                   contour_color='#000000',
-                                   width=750, height=750, margin=0).generate(all)
+        wc              =generateWordCloud(all, StopWords)
         fig , ax =plt.subplots(facecolor='#000000')
-        ax       =plt.imshow  (WC, interpolation='bilinear')
+        ax       =plt.imshow  (wc, interpolation='bilinear')
         ax       =plt.axis                           ('off')
         st.pyplot(fig, use_container_width=True)
 else:   st.info  ('No text description records match the chosen filter matrix configuration to compile a WordCloud.')
