@@ -120,7 +120,7 @@ st.divider( )
 #text        =  SYD[list(select)]
 #description =  text.dropna(subset=['description'], axis=0)['description']
 if not FilteredDF.empty and FilteredDF['description'].str.cat(sep='').strip( ):
-    with st.spinner(text='Rendering WordCloud…', show_time=True):
+    with st.spinner(text='Rendering WordCloud…', show_time=False):
         all             =''.join(words for words in FilteredDF['description'].dropna( ))
         StopWords       =list(STOPWORDS)
         StopWords.extend(['b','PID','will','number','br','EXT'])
