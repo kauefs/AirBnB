@@ -213,6 +213,6 @@ if table.checkbox('DataFrame', value=True):
     st.subheader ('DATA')
     st.write     ('InSide SydNey AirBnB')
     st.markdown  (f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
-    st.write     (FilteredDF, use_container_width=True)
+    st.dataframe (FilteredDF, use_container_width=True)
     st.divider   (      )
 st.toast         ('SYD!', icon='🌃')
