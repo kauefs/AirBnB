@@ -174,7 +174,7 @@ if  InterActiveMap.checkbox('InterActive', value=True):
                                                 extruded       =  True,
                                                 coverage       =   1)],
                             #views=[{'@@type':'MapView','controller':True}],
-                             map_style=pdk.map_styles.SATELLITE,
+                             map_style= None, # pdk.map_styles.SATELLITE,
                              api_keys = None,
                              initial_view_state=pdk.ViewState(#initial,
                                                               longitude=151.20,
@@ -195,7 +195,7 @@ if  InterActiveMap.checkbox('InterActive', value=True):
     st.divider( )
 if  SimpleMap.checkbox('Simple'):
     st.subheader      ('Simple Map')
-    st.map            (FilteredDF, use_container_width=True)
+    st.map            (FilteredDF, width='stretch')
     st.divider( )
 # Correlation Matrix & HeatMap:
 if not FilteredDF.empty and len(FilteredDF) > 1:
@@ -216,7 +216,7 @@ if not FilteredDF.empty and len(FilteredDF) > 1:
                     linewidths=  1   ,
                     linecolor ='white',
                     ax        =ax2   )
-        st.pyplot(fig2, use_container_width=True)
+        st.pyplot(fig2, width='stretch')
 else:   st.info  ('Insufficient rows found to balance out correlation calculations.')
 st.divider( )
 # Data Table:
@@ -224,6 +224,6 @@ if table.checkbox('DataFrame', value=True):
     st.subheader ('DATA')
     st.write     ('InSide SydNey AirBnB')
     st.markdown  (f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
-    st.dataframe (FilteredDF, use_container_width=True)
+    st.dataframe (FilteredDF, width='stretch')
     st.divider   (      )
 st.toast         ('SYD!', icon='🌃')
