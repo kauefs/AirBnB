@@ -179,8 +179,8 @@ if  InterActiveMap.checkbox('InterActive', value=True):
                              description  = None  ,
                              effects      = None  ,
                              map_provider ='mapbox', #'carto'
-                             parameters   = None  ,
-                             use_container_width=True))
+                             parameters   = None  ),
+                             use_container_width=True)
     st.divider( )
 if  SimpleMap.checkbox('Simple'):
     st.subheader      ('Simple Map')
