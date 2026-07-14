@@ -9,9 +9,9 @@ from    wordcloud            import  WordCloud, STOPWORDS
 from          PIL            import  Image
 st.set_page_config(page_title='SYD', page_icon='🌃', layout='wide', initial_sidebar_state='expanded')
 # DATA:
-DATA         = 'dataset/SYD20230606AirBnB.csv.gz'
+DATA         =  'dataset/SYD20230606AirBnB.csv.gz'
 @st.cache_data
-def load_data():
+def load_data( ):
     rename   = {'name'                          :'listing',
                 'host_name'                     :'host'   ,
                 'room_type'                     :'room'   ,
@@ -26,7 +26,7 @@ def load_data():
     data         =data.fillna({'last' :     0})
     data         =data.fillna({'month':     0})
     data         =data.dropna(subset=['description'], axis=0)
-    data['price']=data.price.replace(r'[\$,]', '', regex=True).astype(float)
+    data['price']=data.price.replace(r'[\$,]','', regex=True).astype(float)
 # OutLiers:
     data.drop(data[data['price'  ] > 600].index, axis=0, inplace=True)
     data.drop(data[data['nights' ] >  90].index, axis=0, inplace=True)
@@ -44,40 +44,40 @@ def load_data():
                 '365'           ,
                 'ltm'           ,
                 'description'   ]    
-    data     = data[list(columns)]
-    return     data
-df           = load_data()
-hood         = df.neighbourhood.unique().tolist()
-room         = df.room.unique().tolist()
+    return     data[list(columns)]
+try:df             =   load_data( )
+except Exception:df=pd.DataFrame(columns=['listing','host','neighbourhood','latitude','longitude','room','price','nights','reviews','365','ltm','description'])
+hood               =df.neighbourhood.unique( ).tolist( )if not df.empty else [ ]
+room               =df.room         .unique( ).tolist( )if not df.empty else [ ]
 # SIDE:
 st.sidebar.title    (  'ƊⱭȾɅViƧi🧿Ƞ&trade;')
 st.sidebar.success  (  'InSide AirBnB'      )
 st.sidebar.divider  (                       )
-st.sidebar.warning  (  'SYDNEY       '      )
+st.sidebar.warning  (  'SYDNEY'             )
 st.sidebar.subheader(  'Data Analysis'      )
 st.sidebar.markdown ('''Source: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)''')
 st.sidebar.write    (  'Data Base Date: 2023.06.06')
 #   Maps            PlaceHolder:
 st.sidebar.write('Map Options:')
-InterActiveMap= st.sidebar.empty( )
-SimpleMap     = st.sidebar.empty( )
+InterActiveMap=st.sidebar.empty( )
+SimpleMap     =st.sidebar.empty( )
 # NeighbourHood MultiSelect:
-FilteredHood  = st.sidebar.multiselect(label = 'NeighBourHood:',
-                                      options=  hood,
+FilteredHood  =st.sidebar.multiselect(label  = 'NeighBourHood:',
+                                      options=  hood  ,
                                       default=['Sydney, New South Wales, Australia'])
 # Room Type MultiSelect:
-FilteredRoom  = st.sidebar.multiselect(label = 'RoomType:',
-                                      options=  room,
+FilteredRoom  =st.sidebar.multiselect(label  = 'RoomType:',
+                                      options=  room  ,
                                       default=['Entire home/apt','Private room','Shared room','Hotel room'])
 # Price Slider:
-FilteredPrice = st.sidebar.slider('Price:', 0.01, 599.99, 255.75, step=None)
+FilteredPrice =st.sidebar.slider('Price:',.01,599.99,255.75, step=None)
 # Filtered Data:
-FilteredDF    = df[(df.neighbourhood.isin(FilteredHood))&(df.room.isin(FilteredRoom))&(df.price <= FilteredPrice)]
+FilteredDF    =df[(df.neighbourhood.isin(FilteredHood))&(df.room.isin(FilteredRoom))&(df.price <= FilteredPrice)]
 # PlaceHoder UpDate:
 st.sidebar.info('{} Filtered Listings'.format(FilteredDF.shape[0]))
 #   Table           PlaceHolder:
-table         = st.sidebar.empty( )
-st.sidebar.divider(               )
+table         =st.sidebar.empty( )
+st.sidebar.divider (             )
 st.sidebar.markdown('''
 ![2023.09.23   ](https://img.shields.io/badge/2023.09.23-000000)
 
@@ -91,38 +91,41 @@ st.sidebar.markdown('''
 [![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&logoColor=0065FF&label=&copy;2023&labelColor=0065FF)](https://datavision.one/)
                     ''')
 # MAIN:
-st.divider(                    )
-st.title('Inside Sydney Airbnb')
-st.divider(                    )
+st.divider( )
+st.title  ('Inside Sydney Airbnb')
+st.divider( )
 # WordCloud:
 #SYD         =  pd.read_csv('datasets/SYD20230606AirBnB.csv.gz')
 #select      =['description']
 #text        =  SYD[list(select)]
 #description =  text.dropna(subset=['description'], axis=0)['description']
-with st.spinner(text='Loading…'):#, show_time=True):
-    all         = ' '.join(words for words in FilteredDF['description'])
-    StopWords   =  set(STOPWORDS)
-    StopWords.update(['b','PID','will','number','br','EXT'])
-    mask        =  np.array(Image.open('img/sydney.jpg'))
-    WordCloud   =  WordCloud(stopwords=StopWords,
-                             mask=mask,
-                             colormap='autumn',
-                             background_color='#000000',
-                            #relative_scaling=.5,
-                             max_font_size=None,
-                             max_words=750,
-                             contour_width=0,
-                             contour_color='#000000',
-                             width=750, height=750, margin=0).generate(all)
-fig, ax = plt.subplots(facecolor='k')
-ax      = plt.imshow(WordCloud, interpolation='bilinear')
-ax      = plt.axis('off')
-st.pyplot(fig,clear_figure=None,width='content')
-st.divider(                                             )
+if not FilteredDF.empty and FilteredDF['description'].str.cat(sep='').strip( ):
+    with st.spinner(text='Generating WordCloud…', show_time=True):
+        all             =''.join(words for words in FilteredDF['description'].dropna( ))
+        StopWords       =set(STOPWORDS)
+        StopWords.update(['b','PID','will','number','br','EXT'])
+        try: mask       =np.array(Image.open('img/sydney.jpg'))
+        except Exception:mask=None # FallBack to Standard Square LayOut if Image is Missing
+        WC              =WordCloud(stopwords=StopWords,
+                                   mask=mask,
+                                   colormap='autumn',
+                                   background_color='#000000',
+                                  #relative_scaling=.5,
+                                   max_font_size=None,
+                                   max_words    = 750,
+                                   contour_width=   0,
+                                   contour_color='#000000',
+                                   width=750, height=750, margin=0).generate(all)
+        fig , ax =plt.subplots(facecolor='#000000')
+        ax       =plt.imshow  (WC, interpolation='bilinear')
+        ax       =plt.axis                           ('off')
+        st.pyplot(fig, use_container_width=True)
+else:   st.info  ('No text description records match the chosen filter matrix configuration to compile a WordCloud.')
+st.divider(    )
 # MAPS:
 if  InterActiveMap.checkbox('InterActive', value=True):
-    st.subheader(           'InterActive Map')
-#initial = compute_view(FilteredDF[['longitude','latitude']], 0.25)
+    st.subheader           ('InterActive Map'        )
+   #initial=compute_view(FilteredDF[['longitude','latitude']],.25)
     st.pydeck_chart(pdk.Deck(layers=[#pdk.Layer('HexagonLayer',
                                      #           data=FilteredDF,
                                      #           disk_resolution=  10,
@@ -159,9 +162,9 @@ if  InterActiveMap.checkbox('InterActive', value=True):
                                                 pickable       =  True,
                                                 extruded       =  True,
                                                 coverage       =   1)],
-                             views=[{'@@type':'MapView','controller':True}],
-                             map_style=pdk.map_styles.SATELLITE,
-                             api_keys = None ,
+                            #views=[{'@@type':'MapView','controller':True}],
+                             map_style='mapbox://styles/mapbox/satellite-v9',
+                             api_keys = None,
                              initial_view_state=pdk.ViewState(#initial,
                                                               longitude=151.20,
                                                               latitude =-33.88,
@@ -170,43 +173,46 @@ if  InterActiveMap.checkbox('InterActive', value=True):
                                                               max_zoom = None ,
                                                               pitch    = 75   ,
                                                               bearing  = 45  ),
-                             width       ='100%',
-                             height      =  500 ,
-                             tooltip     ={'text':'AUD {price}'},
-                             description = None ,
-                             effects     = None ,
-                             map_provider='mapbox', #'carto'
-                             parameters  = None ))
-    st.divider(                    )
+                             width        ='100%' ,
+                             height       =  500  ,
+                             tooltip      ={'text':'AUD {price}'},
+                             description  = None  ,
+                             effects      = None  ,
+                             map_provider ='mapbox', #'carto'
+                             parameters   = None  ,
+                             use_container_width=True)
+    st.divider( )
 if  SimpleMap.checkbox('Simple'):
-    st.subheader(      'Simple Map')
-    st.map(FilteredDF)
-    st.divider(                    )
+    st.subheader      ('Simple Map')
+    st.map            (FilteredDF, use_container_width=True)
+    st.divider( )
 # Correlation Matrix & HeatMap:
-L, R = st.columns(2)
-with L:
-    st.subheader('CorrelationMatrix')
-    corr = FilteredDF[['price','nights','reviews']].corr().round(2)
-    corr
-with R:
-    st.subheader(   'HeatMap')
-    corr      = FilteredDF[['price','nights','reviews']].corr()
-    fig2, ax2 = plt.subplots()
-    ax2       = sns.heatmap(corr,
-                            fmt       ='.2f',
-                            cbar      = True,
-                            annot     = True,
-                            square    = True,
-                            cmap      ='bone',
-                            linewidths=      1,
-                            linecolor ='white')
-    st.pyplot(fig2,clear_figure=None,width='content')
-st.divider(                           )
+if not FilteredDF.empty and len(FilteredDF) > 1:
+    L, R = st.columns(2)
+    with L:
+        st.subheader('CorrelationMatrix')
+        corr    =FilteredDF[['price','nights','reviews']].corr( ).round(2)
+        st.dataframe(corr, use_container_width=True)
+    with R:
+        st.subheader('HeatMap')
+        fig2,ax2=plt.subplots( )
+        sns.heatmap(corr,
+                    fmt       ='.2f' ,
+                    cbar      = True ,
+                    annot     = True ,
+                    square    = True ,
+                    cmap      ='bone',
+                    linewidths=  1   ,
+                    linecolor ='white',
+                    ax        =ax2   )
+        st.pyplot(fig2, use_container_width=True)
+else:   st.info  ('Insufficient rows found to balance out correlation calculations.')
+st.divider( )
 # Data Table:
 if table.checkbox('DataFrame', value=True):
-    st.subheader('DATA')
-    st.write(    'InSide SydNey AirBnB')
-    st.markdown(f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
-    st.write(FilteredDF)
-    st.divider(        )
-st.toast(        'SYD!',             icon='🌃')
+    st.subheader ('DATA')
+    st.write     ('InSide SydNey AirBnB')
+    st.markdown  (f'''➡️  Showing {'**{}**'.format(FilteredDF.shape[0])} **{', '.join(FilteredRoom)}** in **{', '.join(FilteredHood)}** under **AUD {FilteredPrice}**:''')
+    st.write     (FilteredDF, use_container_width=True)
+    st.divider   (      )
+st.toast         ('SYD!', icon='🌃')
