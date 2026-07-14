@@ -180,7 +180,7 @@ if  InterActiveMap.checkbox('InterActive', value=True):
                              effects      = None  ,
                              map_provider ='mapbox', #'carto'
                              parameters   = None  ,
-                             use_container_width=True)
+                             use_container_width=True))
     st.divider( )
 if  SimpleMap.checkbox('Simple'):
     st.subheader      ('Simple Map')
