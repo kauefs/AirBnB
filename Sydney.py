@@ -9,38 +9,38 @@ from    wordcloud            import  WordCloud, STOPWORDS
 from          PIL            import  Image
 st.set_page_config(page_title='SYD', page_icon='🌃', layout='wide', initial_sidebar_state='expanded')
 # DATA:
-DATA         =  'dataset/SYD20230606AirBnB.csv.gz'
+DATA         =  'https://github.com/kauefs/AirBnB/raw/refs/heads/@/dataset/SYD20230606AirBnB.csv.gz'
 @st.cache_data
 def generateWordCloud(text, StopWordsList):
     '''
     Generates and returns a WordCloud object based on filtered text.
     Passing text_data as an argument ensures it only reruns if data changes!
     '''
-    # Note: reconstructing the set inside because sets are not natively hashable by st.cache_data
+    # Reconstructing the set inside because sets are not natively hashable by st.cache_data
     stopwords=set(StopWordsList)
     try: mask=np.array(Image.open('img/sydney.jpg'))
     except Exception:mask=None # FallBack to Standard Square LayOut if Image is Missing
     WC       =WordCloud(stopwords=stopwords,
                         mask=mask,
-                        colormap='autumn',
+                        colormap='Blues',
                         background_color='#000000',
                        #relative_scaling=.5,
                         max_font_size=None,
                         max_words    = 500,
                         contour_width=   0,
-                        contour_color='#000000',
+                        contour_color=   '#000000',
                         width=750, height=750, margin=0).generate(text)
     return WC
 def load_data( ):
-    rename   = {'name'                          :'listing',
-                'host_name'                     :'host'   ,
-                'room_type'                     :'room'   ,
-                'minimum_nights'                :'nights' ,
-                'number_of_reviews'             :'reviews',
-                'availability_365'              :'365'    ,
-                'number_of_reviews_ltm'         :'ltm'    } # Last Twelve Months
-    data         =  pd.read_csv(DATA                      )
-    data         =data.rename(columns=rename              )
+    rename   = {'name'                 :'listing',
+                'host_name'            :'host'   ,
+                'room_type'            :'room'   ,
+                'minimum_nights'       :'nights' ,
+                'number_of_reviews'    :'reviews',
+                'availability_365'     :'365'    ,
+                'number_of_reviews_ltm':'ltm'    } # Last Twelve Months
+    data         =  pd.read_csv(DATA             )
+    data         =data.rename(columns=rename     )
 # Cleaning:
     data         =data.fillna({'host' :'HOST'})
     data         =data.fillna({'last' :     0})
@@ -73,7 +73,7 @@ room               =df.room         .unique( ).tolist( )if not df.empty else [ ]
 st.sidebar.title    (  'ƊⱭȾɅViƧi🧿Ƞ&trade;')
 st.sidebar.success  (  'InSide AirBnB'      )
 st.sidebar.divider  (                       )
-st.sidebar.warning  (  'SYDNEY'             )
+st.sidebar.info     (  'SYDNEY'             )
 st.sidebar.subheader(  'Data Analysis'      )
 st.sidebar.markdown ('''Source: [InSide AirB**n**B](http://insideairbnb.com/get-the-data.html)''')
 st.sidebar.write    (  'Data Base Date: 2023.06.06')
@@ -130,72 +130,48 @@ if not FilteredDF.empty and FilteredDF['description'].str.cat(sep='').strip( ):
         fig , ax =plt.subplots(facecolor='#000000')
         ax       =plt.imshow  (wc, interpolation='bilinear')
         ax       =plt.axis                           ('off')
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width='stretch')
 else:   st.info  ('No text description records match the chosen filter matrix configuration to compile a WordCloud.')
 st.divider(    )
 # MAPS:
 if  InterActiveMap.checkbox('InterActive', value=True):
     st.subheader           ('InterActive Map'        )
-   #initial=compute_view(FilteredDF[['longitude','latitude']],.25)
-    st.pydeck_chart(pdk.Deck(layers=[#pdk.Layer('HexagonLayer',
-                                     #           data=FilteredDF,
-                                     #           disk_resolution=  10,
-                                     #           radius         =  75,
-                                     #           get_position   =['longitude','latitude'],
-                                     #           get_fill_color =[255, 255, 255, 255],  # RGBA
-                                     #           get_line_color =[  0,   0,   0,   0],
-                                     #           auto_highlight = True,
-                                     #           elevation_scale=  50,
-                                     #           elevation_range=[  0, 100] ,
-                                     #           get_elevation  = 'price'   ,
-                                     #           pickable=True,
-                                     #           extruded=True,
-                                     #           coverage=1),
-                                     #pdk.Layer('ScatterplotLayer',
-                                     #           data          =  FilteredDF,
-                                     #           get_position  =['longitude','latitude'],
-                                     #           auto_highlight=  True,
-                                     #           get_fill_color=[255, 255, 255, 55],    # RGBA
-                                     #           get_line_color=[  0,   0,   0,  0],
-                                     #           get_radius    =   1,
-                                     #           pickable      =       True),
-                                     pdk.Layer('ColumnLayer',
-                                                data           =  FilteredDF,
-                                                radius         =  15,
-                                                disk_resolution=  15,
-                                                get_position   =['longitude','latitude'],
-                                                get_elevation  =   'price'  ,
-                                                elevation_scale= 7.5,
-                                                elevation_range=[  0,  75],
-                                                get_fill_color =[255, 255, 255, 55],    # RGBA
-                                                get_line_color =[  0,   0,   0,  0],
-                                                auto_highlight =  True,
-                                                pickable       =  True,
-                                                extruded       =  True,
-                                                coverage       =   1)],
-                            #views=[{'@@type':'MapView','controller':True}],
-                             map_style= None, # pdk.map_styles.SATELLITE,
-                             api_keys = None,
-                             initial_view_state=pdk.ViewState(#initial,
-                                                              longitude=151.20,
-                                                              latitude =-33.88,
-                                                              zoom     = 12   ,
-                                                              min_zoom = None ,
-                                                              max_zoom = None ,
-                                                              pitch    = 60   ,
-                                                              bearing  = 45  ),
-                             width        ='100%' ,
-                             height       =  500  ,
-                             tooltip      ={'text':'AUD {price}'},
-                             description  = None  ,
-                             effects      = None  ,
-                             map_provider ='mapbox', #'carto'
-                             parameters   = None  ),
-                             use_container_width=True)
+    layers=[pdk.Layer('ColumnLayer',
+                        data          =  FilteredDF,
+                        get_position  =['longitude','latitude'],
+                        get_fill_color=[100, 150, 235, 150],   # RGBA
+                        get_line_color=[  0,   0,   0,   0],
+                        radius        =         100 ,          # Radius in Meters
+                        get_elevation = 'price',
+                        elevation_scale=10,
+                        elevation_range=[0, 100],
+                        coverage      =   1,
+                        extruded      = True,
+                        pickable      = True,
+                        auto_highlight= True)]
+    initial_view_state=pdk.ViewState(longitude=151.20,
+                                     latitude =-33.88,
+                                     zoom     = 12   ,
+                                     min_zoom = None ,
+                                     max_zoom = None ,
+                                     pitch    = 55   ,
+                                     bearing  = 15)
+    PyDeck=pdk.Deck(layers=layers,
+                    map_style=None,
+                    api_keys =None,
+                    initial_view_state=initial_view_state,
+                    width        = '100%',
+                    height       =  500  ,
+                    tooltip      ={'text':'AUD {price}'},
+                    map_provider ='carto',                    
+                    description  = None  ,
+                    effects      = None  ,
+                    parameters   = None  )
+    st.pydeck_chart(pydeck_obj=PyDeck, width='stretch', height=500, selection_mode='single-object', on_select='ignore', key=None)
     st.divider( )
 if  SimpleMap.checkbox('Simple'):
     st.subheader      ('Simple Map')
-    st.map            (FilteredDF, width='stretch')
+    st.map            (data=FilteredDF, latitude='latitude', longitude='longitude', color='#6595EE', size=18, zoom=11, width='stretch', height=500)
     st.divider( )
 # Correlation Matrix & HeatMap:
 if not FilteredDF.empty and len(FilteredDF) > 1:
@@ -203,7 +179,7 @@ if not FilteredDF.empty and len(FilteredDF) > 1:
     with L:
         st.subheader('CorrelationMatrix')
         corr    =FilteredDF[['price','nights','reviews']].corr( ).round(2)
-        st.dataframe(corr, use_container_width=True)
+        st.dataframe(corr, width='stretch')
     with R:
         st.subheader('HeatMap')
         fig2,ax2=plt.subplots( )
